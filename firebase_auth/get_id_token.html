@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Firebase ID Token</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth-compat.js"></script>
+</head>
+<body>
+<script>
+    // Your Firebase project config (replace with your own)
+    const firebaseConfig = {
+        apiKey: "AIzaSyAlDBUVNZccCuFFHMdyinpzqlX9PtYYeZI",           // Your Web API Key
+        authDomain: "rental-17e68.firebaseapp.com",                   // Project ID + ".firebaseapp.com"
+        projectId: "rental-17e68",                                    // Your Project ID
+        storageBucket: "rental-17e68.appspot.com",                    // Project ID + ".appspot.com"
+        messagingSenderId: "950799733771",                            // Your Project Number
+        appId: "1:950799733771:web:345fa782f1e0e6df56230e"          // You need to get this from Firebase Console
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Your custom token (replace with your own)
+    const customToken = "eyJhbGciOiAiUlMyNTYiLCAidHlwIjogIkpXVCIsICJraWQiOiAiZGU3ZTE0MjQyNzYyYmYzNDRmZDMyYTM3N2QyM2ExZWZiZWUyNzU2ZCJ9.eyJpc3MiOiAiZmlyZWJhc2UtYWRtaW5zZGstZmJzdmNAcmVudGFsLTE3ZTY4LmlhbS5nc2VydmljZWFjY291bnQuY29tIiwgInN1YiI6ICJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0ByZW50YWwtMTdlNjguaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCAiYXVkIjogImh0dHBzOi8vaWRlbnRpdHl0b29sa2l0Lmdvb2dsZWFwaXMuY29tL2dvb2dsZS5pZGVudGl0eS5pZGVudGl0eXRvb2xraXQudjEuSWRlbnRpdHlUb29sa2l0IiwgInVpZCI6ICJaQWt4ZXR2MUtIVGRvcENXNGNnWEs4RllxeHoxIiwgImlhdCI6IDE3NDU4NjgwNTIsICJleHAiOiAxNzQ1ODcxNjUyfQ.3B8H0Iqs8fb16i_QaaXJlVz3874icd4RhaisszkAiYo_WMMhEBzHg45-qo01AjXMM7cm4YOTeRmOb6k58JoewWcADnqpJBA4y4Le-lfBDhiW-F4TISE8ElZglvrg5wBIdKwkICXWvt-eaTvBjrsbNtPFJA8wK_sAYjgQC6-tFnS8-_GWer-ufmqqP1_UN5JsAO5zPGXp5kqYzQD3OPTw7IFtafLqrwFuwAec2GKwQZLFkD7JE93Jwb2ABRbilo8LK156rPLW3Cp8Xp-BkM19oxrOyHEBp4rxDjVkRDMUojIDIAcjmSV8QV8uFI32lwDix9XNPFY7lh4l3ew0RG6Ziw";
+    auth.signInWithCustomToken(customToken)
+        .then((userCredential) => {
+            return userCredential.user.getIdToken();
+        })
+        .then((idToken) => {
+            console.log("ID Token:", idToken);
+            alert("ID Token copied to console!");
+        })
+        .catch((error) => {
+            console.error("Error getting ID token:", error);
+        });
+</script>
+</body>
+</html>
